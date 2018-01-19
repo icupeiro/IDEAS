@@ -52,19 +52,19 @@ model WindowDynamics "Comparison of three window dynamics options"
 
 equation
   connect(zone1.propsBus[1], outerWall.propsBus_a) annotation (Line(
-      points={{20,-54.5},{20,-54.5},{20,-6},{20,32},{-44,32}},
+      points={{20,-54.5},{20,-54.5},{20,-6},{20,32},{-44.8333,32}},
       color={255,204,51},
       thickness=0.5));
   connect(windowNone.propsBus_a, zone1.propsBus[2]) annotation (Line(
-      points={{-44,-8},{-28,-8},{20,-8},{20,-55.5}},
+      points={{-44.8333,-8},{-44.8333,-8},{20,-8},{20,-55.5}},
       color={255,204,51},
       thickness=0.5));
   connect(windowCombined.propsBus_a, zone1.propsBus[3]) annotation (Line(
-      points={{-44,-48},{-32,-48},{20,-48},{20,-56.5}},
+      points={{-44.8333,-48},{-44.8333,-48},{20,-48},{20,-56.5}},
       color={255,204,51},
       thickness=0.5));
   connect(windowTwo.propsBus_a, zone1.propsBus[4]) annotation (Line(
-      points={{-44,-88},{20,-88},{20,-57.5}},
+      points={{-44.8333,-88},{20,-88},{20,-57.5}},
       color={255,204,51},
       thickness=0.5));
   connect(zone1.port_a, bou.ports[1])

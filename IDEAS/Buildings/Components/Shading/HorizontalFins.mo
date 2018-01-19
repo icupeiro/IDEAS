@@ -31,14 +31,14 @@ equation
     if tipShadow > l then
       shaFrac = 1;
     else
-      shaFrac = min(1, tipShadow/l);
+      shaFrac = min(1, max(0,tipShadow/l));
     end if;
   else
     headShadow = max(0, -1 * ((D*sin(Modelica.Constants.pi/2 - beta)/tan(Modelica.Constants.pi/2 - projectedAltitudeAngle))-D*cos(Modelica.Constants.pi/2-beta)));
     footShadow = max(0, w * (cos(beta)+ sin(beta)*tan(projectedAltitudeAngle)));
     tipShadow = 0;
     totalShadow = headShadow + footShadow;
-    shaFrac = min(1, totalShadow/l);
+    shaFrac = min(1, max(0,totalShadow/l));
   end if;
 
   iSolDir = (1-shaFrac)*solDir;

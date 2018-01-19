@@ -1,8 +1,8 @@
 within IDEAS.Fluid.Production.BaseClasses;
 partial model PartialHeatPump "Heat pump partial"
   extends IDEAS.Fluid.Interfaces.FourPortHeatMassExchanger(
-    final tau1=30,
-    final tau2=30,
+    final tau1=300,
+    final tau2=300,
     m1_flow_nominal=heatPumpData.m1_flow_nominal*sca,
     m2_flow_nominal=heatPumpData.m2_flow_nominal*sca,
     dp1_nominal=if computeFlowResistance then heatPumpData.dp1_nominal else 0,

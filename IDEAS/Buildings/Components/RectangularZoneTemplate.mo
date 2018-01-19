@@ -2,7 +2,8 @@ within IDEAS.Buildings.Components;
 model RectangularZoneTemplate
   "Rectangular zone including walls, floor and ceiling"
   extends IDEAS.Buildings.Components.Interfaces.PartialZone(
-    redeclare replaceable IDEAS.Buildings.Components.ZoneAirModels.WellMixedAir airModel
+    redeclare replaceable IDEAS.Buildings.Components.ZoneAirModels.WellMixedAir airModel(
+        massDynamics=massDynamics)
     constrainedby
       IDEAS.Buildings.Components.ZoneAirModels.BaseClasses.PartialAirModel(
       mSenFac=mSenFac),
@@ -893,6 +894,8 @@ public
   Modelica.Thermal.HeatTransfer.Interfaces.HeatPort_a port_emb if hasTABSCei
     "embedded port for TABS"
     annotation (Placement(transformation(extent={{90,-100},{110,-80}})));
+  parameter Modelica.Fluid.Types.Dynamics massDynamics=airModel.energyDynamics
+    "Type of mass balance: dynamic (3 initialization options) or steady state";
 initial equation
   assert(not bouTypA==IDEAS.Buildings.Components.Interfaces.BoundaryType.SlabOnGround, "The value for bouTypA is not supported");
   assert(not bouTypB==IDEAS.Buildings.Components.Interfaces.BoundaryType.SlabOnGround, "The value for bouTypB is not supported");

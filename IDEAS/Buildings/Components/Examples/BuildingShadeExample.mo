@@ -131,8 +131,8 @@ equation
         points={{26,-2},{10,-2},{10,56},{-28,56},{-28,36},{-24,36}}, color={0,0,
           127}));
   connect(overhangAndHFins.solDif, buildingShade.solDif) annotation (Line(
-        points={{26,-6},{18,-6},{18,-4},{6,-4},{6,52},{-24,52},{-24,32}}, color
-        ={0,0,127}));
+        points={{26,-6},{18,-6},{18,-4},{6,-4},{6,52},{-24,52},{-24,32}}, color=
+         {0,0,127}));
   connect(overhangAndHFins.angInc, buildingShade.angInc) annotation (Line(
         points={{26,-12},{-2,-12},{-2,46},{-24,46},{-24,26}}, color={0,0,127}));
   connect(overhangAndHFins.angAzi, buildingShade.angAzi) annotation (Line(

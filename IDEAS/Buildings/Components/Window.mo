@@ -243,7 +243,7 @@ equation
       smooth=Smooth.None));
   connect(Tdes.u, propsBus_a.weaBus.Tdes);
   connect(shaType.iAngInc, solWin.angInc) annotation (Line(points={{-50,-54},{
-          -22,-54},{-22,-54},{-10,-54}}, color={0,0,127}));
+          -22,-54},{-10,-54}},           color={0,0,127}));
   connect(heaCapGla.port, layMul.port_a)
     annotation (Line(points={{16,-12},{16,0},{10,0}},     color={191,0,0}));
   connect(heaCapFra.port, layFra.port_a)

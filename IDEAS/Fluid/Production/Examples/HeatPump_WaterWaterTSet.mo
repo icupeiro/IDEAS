@@ -123,7 +123,7 @@ equation
       color={0,127,255},
       smooth=Smooth.None));
   annotation (Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-120,
-            -100},{120,100}}), graphics),
+            -100},{120,100}})),
     __Dymola_Commands(file=
           "modelica://IDEAS/Resources/Scripts/Dymola/Fluid/Production/Examples/HeatPump_WaterWaterTset.mos"
         "Simulate and plot"),  Documentation(revisions="<html>

@@ -1,6 +1,7 @@
 within IDEAS.Buildings.Components;
 model Zone "Building zone model"
-  extends IDEAS.Buildings.Components.Interfaces.PartialZone;
+  extends IDEAS.Buildings.Components.Interfaces.PartialZone(airModel(
+        massDynamics=massDynamics));
 
   //this propsbus exposes all ports to the outside of the model
   IDEAS.Buildings.Components.Interfaces.ZoneBus[nSurf] propsBus(each final numIncAndAziInBus=sim.numIncAndAziInBus,
@@ -13,6 +14,8 @@ model Zone "Building zone model"
         extent={{-20,20},{20,-20}},
         rotation=-90,
         origin={-100,40})));
+  parameter Modelica.Fluid.Types.Dynamics massDynamics=airModel.energyDynamics
+    "Type of mass balance: dynamic (3 initialization options) or steady state";
 equation
   connect(propsBus, propsBusInt) annotation (Line(
       points={{-100,40},{-90,40},{-80,40}},
