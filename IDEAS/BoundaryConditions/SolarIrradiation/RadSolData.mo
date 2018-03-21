@@ -15,10 +15,8 @@ model RadSolData "Selects or generates correct solar data for this surface"
     annotation (HideResults=true,Placement(transformation(extent={{90,70},{110,90}})));
 
   Modelica.Blocks.Interfaces.RealOutput HDirTil
-    "Direct solar irradiation on a tilted surface"
-    annotation (Placement(transformation(extent={{96,30},{116,50}})));
+    annotation (Placement(transformation(extent={{96,10},{116,30}})));
   Modelica.Blocks.Interfaces.RealOutput HGroDifTil
-    "Diffuse sky solar irradiance on a tilted surface"
     annotation (Placement(transformation(extent={{96,-10},{116,10}})));
   Modelica.Blocks.Interfaces.RealOutput HSkyDifTil
     "Diffuse sky solar irradiance on a tilted surface"
@@ -34,9 +32,11 @@ model RadSolData "Selects or generates correct solar data for this surface"
   Modelica.Blocks.Interfaces.RealOutput Tenv "Environment temperature"
     annotation (Placement(transformation(extent={{96,-30},{116,-10}})));
 protected
-  final parameter Boolean solDataInBus=if sum( { if sum(abs(incAndAziInBus[i,:] - {inc,azi}))<0.05 then 1 else 0 for i in 1:numIncAndAziInBus})   ==1 then true else false
+  final parameter Boolean solDataInBus=if sum( { if sum(abs({mod(incAndAziInBus[i,1],Modelica.Constants.pi*2),mod(incAndAziInBus[i,2],Modelica.Constants.pi*2)} -
+  {mod(inc,Modelica.Constants.pi*2),mod(azi,Modelica.Constants.pi*2)}))<0.01 then 1 else 0 for i in 1:numIncAndAziInBus})   ==1 then true else false
     "True if the {inc,azi} combination is found in incAndAziInBus" annotation(Evaluate=true);
-  final parameter Integer solDataIndex=sum( { if sum(abs(incAndAziInBus[i,:] - {inc,azi}))<0.05 then i else 0 for i in 1:numIncAndAziInBus})
+  final parameter Integer solDataIndex=sum( { if sum(abs({mod(incAndAziInBus[i,1],Modelica.Constants.pi*2),mod(incAndAziInBus[i,2],Modelica.Constants.pi*2)} -
+  {mod(inc,Modelica.Constants.pi*2),mod(azi,Modelica.Constants.pi*2)}))<0.01 then i else 0 for i in 1:numIncAndAziInBus})
     "Index of the {inc,azi} combination in incAndAziInBus" annotation(Evaluate=true);
   IDEAS.BoundaryConditions.SolarIrradiation.ShadedRadSol radSol(
     final inc=inc,
@@ -58,7 +58,7 @@ protected
     "Dummy inputs when linearising. This avoids unnecessary state space inputs."
     annotation (Placement(transformation(extent={{-100,-70},{-80,-50}})));
 equation
-      assert( not useLinearisation or (useLinearisation and solDataInBus), "The solar data must come
+     assert( not useLinearisation or (useLinearisation and solDataInBus), "The solar data must come
       from the weabus when the model is linearised. Add the combination {inc,azi} = {"+String(inc)+","+String(azi)+"}
       to the parameter incAndAziInBus of the SimInfoManager.");
   connect(radSol.solBus, solBusDummy) annotation (Line(
@@ -74,7 +74,7 @@ equation
       smooth=Smooth.None));
   end if;
   connect(HDirTil, solBusDummy.HDirTil) annotation (Line(
-      points={{106,40},{-39.9,40},{-39.9,30.1}},
+      points={{106,20},{-39.9,20},{-39.9,30.1}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(Tenv, solBusDummy.Tenv) annotation (Line(
