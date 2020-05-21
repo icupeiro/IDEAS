@@ -3,7 +3,7 @@ record OfficeWork
   "Properties for typical office work."
   extends IDEAS.Buildings.Components.OccupancyType.BaseClasses.PartialOccupancyType(
     QlatPp=45,
-    QsenPp=73,
+    QsenPp=100,
     radFra=0.6,
     ICl=0.7);
   annotation (Documentation(revisions="<html>
